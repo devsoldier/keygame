@@ -1,10 +1,10 @@
 import "./App.css";
-import { PianoBootstrap } from "./features/piano/bootstrapper/PianoBootstrap";
+import { PianoHandler } from "./features/piano/bootstrapper/PianoHandler";
 
 function App() {
   return (
     <>
-      <PianoBootstrap />
+      <PianoHandler />
     </>
   );
 }

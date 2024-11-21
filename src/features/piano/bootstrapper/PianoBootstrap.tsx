@@ -20,24 +20,15 @@ export const PianoContext = createContext<PianoContextType>({
 });
 
 /// all business logic belong here
-export function PianoBootstrap() {
-  const getRandomElement = <T,>(arr: T[]): T => {
-    return arr[Math.floor(Math.random() * arr.length)];
-  };
-
-  const generator = (no: number) => {
-    const generatedTiles: Tile[] = Array(no)
-      .fill(null)
-      .map<Tile>(() => ({
-        displayKey: getRandomElement(displayKey),
-        tileColor: getRandomElement(tileColors),
-        soundKey: getRandomElement(soundKeys),
-      }));
-
-    return generatedTiles;
-  };
-
-  const [tiles, setTiles] = useState<Tile[]>([...generator(10)]);
+export function PianoBootstrap({
+  generatedTiles,
+  generator,
+}: {
+  generatedTiles: Tile[];
+  generator: (no: number) => Tile[];
+}) {
+  console.log(`generatedTiles ${generatedTiles}`);
+  const [tiles, setTiles] = useState<Tile[]>([...generatedTiles]);
 
   const tileHandler = (key: string) => {
     if (!key) return;
