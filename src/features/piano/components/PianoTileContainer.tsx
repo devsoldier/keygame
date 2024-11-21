@@ -2,8 +2,6 @@ import { useKeyPress } from "../../../utils/hooks/useKeyPress";
 import { PianoTile } from "./PianoTile";
 import "./Piano.css";
 import { useContext } from "react";
-
-import { PlayPianoSound } from "./PlayPianoSound";
 import { PianoContext } from "../bootstrapper/PianoBootstrap";
 
 export function PianoTileContainer() {
