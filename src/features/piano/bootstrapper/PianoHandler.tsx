@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Tile } from "../components/PianoTile";
 import { displayKey, soundKeys, tileColors } from "./constants/PianoConstants";
 import { PianoBootstrap } from "./PianoBootstrap";
@@ -19,8 +18,6 @@ export function PianoHandler() {
 
     return generatedTiles;
   };
-
-  console.log(generator(10));
 
   return (
     <>

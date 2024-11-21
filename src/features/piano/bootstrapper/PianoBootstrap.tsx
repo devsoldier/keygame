@@ -27,7 +27,6 @@ export function PianoBootstrap({
   generatedTiles: Tile[];
   generator: (no: number) => Tile[];
 }) {
-  console.log(`generatedTiles ${generatedTiles}`);
   const [tiles, setTiles] = useState<Tile[]>([...generatedTiles]);
 
   const tileHandler = (key: string) => {
