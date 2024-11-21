@@ -38,13 +38,6 @@ export function PianoBootstrap() {
       }));
 
     return generatedTiles;
-
-    // setTiles([...tiles, ...generatedTiles]);
-
-    // setTiles((prevTiles) => {
-    //   console.log(`prevTiles length`, prevTiles.length);
-    //   return [...prevTiles, ...generatedTiles];
-    // });
   };
 
   const gameStart = () => {
@@ -67,8 +60,6 @@ export function PianoBootstrap() {
       }
     });
   };
-
-  const addTile = () => {};
 
   /// initialize
   useEffect(() => {
