@@ -11,14 +11,12 @@ import { PlayPianoSound } from "../components/PlayPianoSound";
 
 interface PianoContextType {
   tiles: Tile[];
-  removeTile: (key: string) => void;
-  addTile: () => void;
+  tileHandler: (key: string) => void;
 }
 
 export const PianoContext = createContext<PianoContextType>({
   tiles: [],
-  removeTile: () => {},
-  addTile: () => {},
+  tileHandler: () => {},
 });
 
 /// all business logic belong here
@@ -39,10 +37,21 @@ export function PianoBootstrap() {
         soundKey: getRandomElement(soundKeys),
       }));
 
-    setTiles([...tiles, ...generatedTiles]);
+    return generatedTiles;
+
+    // setTiles([...tiles, ...generatedTiles]);
+
+    // setTiles((prevTiles) => {
+    //   console.log(`prevTiles length`, prevTiles.length);
+    //   return [...prevTiles, ...generatedTiles];
+    // });
   };
 
-  const removeTile = (key: string) => {
+  const gameStart = () => {
+    setTiles(generator(10));
+  };
+
+  const tileHandler = (key: string) => {
     if (!key) return;
 
     /// shows nothing
@@ -51,7 +60,8 @@ export function PianoBootstrap() {
     setTiles((prevTiles) => {
       if (prevTiles[0].displayKey == key) {
         PlayPianoSound(prevTiles[0].soundKey);
-        return prevTiles.filter((item, index) => index != 0);
+        const newTile = prevTiles.filter((item, index) => index != 0);
+        return [...newTile, ...generator(1)];
       } else {
         return prevTiles;
       }
@@ -62,18 +72,14 @@ export function PianoBootstrap() {
 
   /// initialize
   useEffect(() => {
-    generator(10);
+    gameStart();
   }, []);
 
   /// for when the tiles change
-  useEffect(() => {
-    console.log("tiles updated:", tiles);
-  }, [tiles]);
+  useEffect(() => {}, [tiles]);
 
   return (
-    <PianoContext.Provider
-      value={{ tiles, removeTile: removeTile, addTile: addTile }}
-    >
+    <PianoContext.Provider value={{ tiles, tileHandler: tileHandler }}>
       <PianoTileContainer />
     </PianoContext.Provider>
   );
