@@ -7,10 +7,10 @@ import { PlayPianoSound } from "./PlayPianoSound";
 import { PianoContext } from "../bootstrapper/PianoBootstrap";
 
 export function PianoTileContainer() {
-  const { tiles, removeTile } = useContext(PianoContext);
+  const { tiles, tileHandler } = useContext(PianoContext);
 
   const handleKeyboardPress = (event: KeyboardEvent) => {
-    removeTile(event.key.toLocaleUpperCase());
+    tileHandler(event.key.toLocaleUpperCase());
   };
 
   useKeyPress(handleKeyboardPress);
