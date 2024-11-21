@@ -22,7 +22,7 @@ export function PianoTileContainer() {
           displayName={val.displayKey}
           soundKey={val.soundKey}
           index={index}
-          isCurrentKey={index == 0}
+          isCurrentKey={index === 0}
         />
       ))}
     </div>

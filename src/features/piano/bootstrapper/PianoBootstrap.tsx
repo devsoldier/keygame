@@ -51,7 +51,7 @@ export function PianoBootstrap() {
     console.log(`tiles ${tiles}`);
 
     setTiles((prevTiles) => {
-      if (prevTiles[0].displayKey == key) {
+      if (prevTiles[0].displayKey === key) {
         PlayPianoSound(prevTiles[0].soundKey);
         const newTile = prevTiles.filter((item, index) => index != 0);
         return [...newTile, ...generator(1)];
