@@ -1,0 +1,10 @@
+.piano-container {
+  border-radius: 20px;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  height: 300px;
+  align-items: center;
+  justify-content: center;
+}
