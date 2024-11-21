@@ -9,6 +9,8 @@ export function PianoTileContainer() {
 
   const handleKeyboardPress = (event: KeyboardEvent) => {
     tileHandler(event.key.toLocaleUpperCase());
+    // console.log(event.key);
+    // console.log(`outside ${tiles}`);
   };
 
   useKeyPress(handleKeyboardPress);
@@ -17,7 +19,6 @@ export function PianoTileContainer() {
     <div className="piano-container">
       {tiles.map((val, index) => (
         <PianoTile
-          key={val.id}
           color={val.tileColor}
           displayName={val.displayKey}
           soundKey={val.soundKey}

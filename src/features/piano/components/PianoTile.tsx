@@ -1,7 +1,6 @@
 import { AudioKey } from "./PlayPianoSound";
 
 export interface Tile {
-  id: number;
   displayKey: string;
   tileColor: string;
   soundKey: AudioKey;
