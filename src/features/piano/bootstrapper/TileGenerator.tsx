@@ -2,7 +2,7 @@ import { Tile } from "../components/PianoTile";
 import { displayKey, soundKeys, tileColors } from "./constants/PianoConstants";
 import { PianoBootstrap } from "./PianoBootstrap";
 
-export function PianoHandler() {
+export function TileGenerator() {
   const getRandomElement = <T,>(arr: T[]): T => {
     return arr[Math.floor(Math.random() * arr.length)];
   };
