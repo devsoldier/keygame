@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { PianoTileContainer } from "../components/PianoTileContainer";
 import { useDispatch } from "react-redux";
-import { gameInit } from "./piano_redux/actions/PianoAction";
+import { gameinit } from "./piano_redux/reducers/PianoSlice";
 
 export function PianoBootstrap() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(gameInit());
+    dispatch(gameinit());
   }, []);
 
   return <PianoTileContainer />;

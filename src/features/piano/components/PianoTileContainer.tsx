@@ -3,14 +3,14 @@ import { PianoTile } from "./PianoTile";
 import "./Piano.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../common/store";
-import { keyPressed } from "../bootstrapper/piano_redux/actions/PianoAction";
+import { keypress } from "../bootstrapper/piano_redux/reducers/PianoSlice";
 
 export function PianoTileContainer() {
-  const tiles = useSelector((state: RootState) => state.tiles);
+  const tiles = useSelector((state: RootState) => state.piano.tiles);
   const dispatch = useDispatch();
 
   const handleKeyboardPress = (event: KeyboardEvent) => {
-    dispatch(keyPressed(event.key.toLocaleUpperCase()));
+    dispatch(keypress(event.key.toLocaleUpperCase()));
   };
 
   useKeyPress(handleKeyboardPress);

@@ -1,19 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { PianoState } from "./PianoReducer";
 import { PlayPianoSound } from "../../../components/PlayPianoSound";
 import { tileGenerator } from "../../service/PianoService";
+import { Tile } from "../../../components/PianoTile";
 
-// const initialState = { tiles: [] } satisfies PianoState as PianoState;
+export interface PianoState {
+  tiles: Array<Tile>;
+}
+
 const initialState: PianoState = { tiles: [] };
 
-export const PianoSlice = createSlice({
+export const piano = createSlice({
   name: "piano",
   initialState,
   reducers: {
-    gameinit(state) {
+    gameinit: (state) => {
       state.tiles = tileGenerator(10);
     },
-    keypress(state, action: PayloadAction<string>) {
+    keypress: (state, action: PayloadAction<string>) => {
       if (!action.payload) return;
 
       if (state.tiles[0].displayKey === action.payload) {
@@ -25,6 +28,6 @@ export const PianoSlice = createSlice({
   },
 });
 
-export const { gameinit, keypress } = PianoSlice.actions;
+export const { gameinit, keypress } = piano.actions;
 
-export default PianoSlice.reducer;
+export default piano.reducer;
