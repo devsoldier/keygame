@@ -10,7 +10,7 @@ export function PianoTileContainer() {
   const dispatch = useDispatch();
 
   const handleKeyboardPress = (event: KeyboardEvent) => {
-    dispatch(keyPressed(), event.key);
+    dispatch(keyPressed(event.key.toLocaleUpperCase()));
   };
 
   useKeyPress(handleKeyboardPress);
@@ -19,7 +19,6 @@ export function PianoTileContainer() {
     <div className="piano-container">
       {tiles.map((val, index) => (
         <PianoTile
-          // key=
           color={val.tileColor}
           displayName={val.displayKey}
           soundKey={val.soundKey}

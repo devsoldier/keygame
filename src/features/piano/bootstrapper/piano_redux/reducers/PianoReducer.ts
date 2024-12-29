@@ -1,5 +1,5 @@
 import { gameInit, keyPressed } from "../actions/PianoAction";
-import { createReducer, createSlice } from "@reduxjs/toolkit";
+import { createReducer } from "@reduxjs/toolkit";
 import { Tile } from "../../../components/PianoTile";
 import { PlayPianoSound } from "../../../components/PlayPianoSound";
 import { tileGenerator } from "../../service/PianoService";
@@ -16,8 +16,9 @@ export const PianoReducer = createReducer(initialState, (builder) => {
       state.tiles = tileGenerator(10);
     })
     .addCase(keyPressed, (state, action) => {
+      console.log(action);
       if (!action.payload) return;
-      console.log("key" + action.payload);
+
       if (state.tiles[0].displayKey === action.payload) {
         PlayPianoSound(state.tiles[0].soundKey);
         const updatedTiles = state.tiles.filter((_, index) => index != 0);
