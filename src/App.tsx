@@ -1,10 +1,10 @@
 import "./App.css";
-import { TileGenerator } from "./features/piano/bootstrapper/TileGenerator";
+import { PianoBootstrap } from "./features/piano/bootstrapper/PianoBootstrap";
 
 function App() {
   return (
     <>
-      <TileGenerator />
+      <PianoBootstrap></PianoBootstrap>
     </>
   );
 }

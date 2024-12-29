@@ -1,16 +1,16 @@
 import { useKeyPress } from "../../../utils/hooks/useKeyPress";
 import { PianoTile } from "./PianoTile";
 import "./Piano.css";
-import { useContext } from "react";
-import { PianoContext } from "../bootstrapper/PianoBootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../common/store";
+import { keyPressed } from "../bootstrapper/piano_redux/actions/PianoAction";
 
 export function PianoTileContainer() {
-  const { tiles, tileHandler } = useContext(PianoContext);
+  const tiles = useSelector((state: RootState) => state.tiles);
+  const dispatch = useDispatch();
 
   const handleKeyboardPress = (event: KeyboardEvent) => {
-    tileHandler(event.key.toLocaleUpperCase());
-    // console.log(event.key);
-    // console.log(`outside ${tiles}`);
+    dispatch(keyPressed(), event.key);
   };
 
   useKeyPress(handleKeyboardPress);
@@ -19,6 +19,7 @@ export function PianoTileContainer() {
     <div className="piano-container">
       {tiles.map((val, index) => (
         <PianoTile
+          // key=
           color={val.tileColor}
           displayName={val.displayKey}
           soundKey={val.soundKey}
