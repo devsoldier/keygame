@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PlayPianoSound } from "../../../components/PlayPianoSound";
-import { tileGenerator } from "../../service/PianoService";
+import { tileGenerator, tileHandler } from "../../service/PianoService";
 import { Tile } from "../../../components/PianoTile";
 
 export interface PianoState {
@@ -19,11 +19,7 @@ export const piano = createSlice({
     keypress: (state, action: PayloadAction<string>) => {
       if (!action.payload) return;
 
-      if (state.tiles[0].displayKey === action.payload) {
-        PlayPianoSound(state.tiles[0].soundKey);
-        const updatedTiles = state.tiles.filter((_, index) => index != 0);
-        state.tiles = [...updatedTiles, ...tileGenerator(1)];
-      }
+      state.tiles = tileHandler(action.payload, state.tiles);
     },
   },
 });
