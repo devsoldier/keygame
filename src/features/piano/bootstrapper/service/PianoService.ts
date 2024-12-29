@@ -19,11 +19,13 @@ export const tileGenerator = (no: number) => {
 };
 
 export const tileHandler = (key: string, currentTiles: Array<Tile>) => {
-  if (!key) return;
+  if (!key) return currentTiles;
 
   if (currentTiles[0].displayKey === key) {
     PlayPianoSound(currentTiles[0].soundKey);
     const updatedTiles = currentTiles.filter((_, index) => index != 0);
     return [...updatedTiles, ...tileGenerator(1)];
   }
+
+  return currentTiles;
 };
