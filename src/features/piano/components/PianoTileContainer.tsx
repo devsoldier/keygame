@@ -1,17 +1,19 @@
 import { useKeyPress } from "../../../utils/hooks/useKeyPress";
 import { PianoTile } from "./PianoTile";
 import "./Piano.css";
-import { useContext } from "react";
-import { PianoContext } from "../bootstrapper/PianoBootstrap";
+import { useEffect } from "react";
+import { usePianoStore } from "../bootstrapper/piano-centre/piano-store";
 
 export function PianoTileContainer() {
-  const { tiles, tileHandler } = useContext(PianoContext);
+  const { tiles, gameInit, keypress } = usePianoStore();
 
   const handleKeyboardPress = (event: KeyboardEvent) => {
-    tileHandler(event.key.toLocaleUpperCase());
-    // console.log(event.key);
-    // console.log(`outside ${tiles}`);
+    keypress(event.key.toLocaleUpperCase());
   };
+
+  useEffect(() => {
+    gameInit();
+  }, []);
 
   useKeyPress(handleKeyboardPress);
 
