@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { Tile } from "../../components/PianoTile";
 import { tileGenerator, tileHandler } from "./piano-service";
+import { useDeep } from "../../../../utils/hooks/useDeep";
 
 export interface PianoState {
   tiles: Tile[];
@@ -13,19 +14,22 @@ export interface PianoEvent {
 
 const initialState: PianoState = { tiles: [] };
 
-export const usePianoStore = create<PianoState & PianoEvent>()((set, get) => ({
-  tiles: initialState.tiles,
-  gameInit: () => {
-    console.log(`init`);
-    set((currentState) => ({
-      tiles: (currentState.tiles = tileGenerator(10)),
-    }));
-  },
-  keypress: (key) => {
-    console.log(`current first key || ${JSON.stringify(get().tiles[0])}`);
-    console.log(`pressed key || ${key}`);
-    set((currentState) => ({
-      tiles: (currentState.tiles = tileHandler(key, currentState.tiles)),
-    }));
-  },
-}));
+export const pianoStore = create<PianoState & PianoEvent>()(
+  (set, get, api) => ({
+    tiles: initialState.tiles,
+    gameInit: () =>
+      set((currentState) => ({
+        tiles: (currentState.tiles = tileGenerator(10)),
+      })),
+    keypress: (key) =>
+      set((currentState) => {
+        return {
+          tiles: (currentState.tiles = tileHandler(key, currentState.tiles)),
+        };
+      }),
+  })
+);
+
+export const usePianoStore = () => {
+  return pianoStore(useDeep((state) => state));
+};
