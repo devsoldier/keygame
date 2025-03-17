@@ -14,8 +14,6 @@ export function PianoTileContainer() {
     dispatch(keypress(event.key.toLocaleUpperCase()));
   };
 
-  console.log(`rerender`);
-
   useKeyPress(handleKeyboardPress);
 
   return (
