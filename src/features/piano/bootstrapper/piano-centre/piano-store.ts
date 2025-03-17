@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { Tile } from "../../components/PianoTile";
 import { tileGenerator, tileHandler } from "./piano-service";
 import { useDeep } from "../../../../utils/hooks/useDeep";
+import { useShallow } from "zustand/shallow";
 
 export interface PianoState {
   tiles: Tile[];
@@ -21,12 +22,13 @@ export const pianoStore = create<PianoState & PianoEvent>()(
       set((currentState) => ({
         tiles: (currentState.tiles = tileGenerator(10)),
       })),
-    keypress: (key) =>
+    keypress: (key) => {
       set((currentState) => {
         return {
-          tiles: (currentState.tiles = tileHandler(key, currentState.tiles)),
+          tiles: tileHandler(key, currentState.tiles),
         };
-      }),
+      });
+    },
   })
 );
 
