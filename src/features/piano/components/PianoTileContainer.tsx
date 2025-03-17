@@ -4,9 +4,10 @@ import "./Piano.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../common/store";
 import { keypress } from "../bootstrapper/piano_redux/reducers/PianoSlice";
+import deepEqual from "../../../utils/hooks/deepEqual";
 
 export function PianoTileContainer() {
-  const tiles = useSelector((state: RootState) => state.piano.tiles);
+  const tiles = useSelector((state: RootState) => state.piano.tiles, deepEqual);
   const dispatch = useDispatch();
 
   const handleKeyboardPress = (event: KeyboardEvent) => {

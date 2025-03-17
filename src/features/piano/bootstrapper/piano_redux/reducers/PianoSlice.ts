@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { PlayPianoSound } from "../../../components/PlayPianoSound";
 import { tileGenerator, tileHandler } from "../../service/PianoService";
 import { Tile } from "../../../components/PianoTile";
+import { useSelector } from "react-redux";
+import deepEqual from "../../../../../utils/hooks/deepEqual";
+import { RootState } from "../../../../../common/store";
 
 export interface PianoState {
   tiles: Array<Tile>;
