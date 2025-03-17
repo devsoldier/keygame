@@ -15,8 +15,6 @@ export function PianoTileContainer() {
     gameInit();
   }, []);
 
-  console.log(`render`);
-
   useKeyPress(handleKeyboardPress);
 
   return (
